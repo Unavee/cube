@@ -1,10 +1,10 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Search Functionality
     const searchIcon = document.getElementById('searchIcon');
     const searchBox = document.getElementById('searchBox');
 
     if (searchIcon && searchBox) {
-        searchIcon.addEventListener('click', function() {
+        searchIcon.addEventListener('click', function () {
             searchBox.style.display = searchBox.style.display === 'block' ? 'none' : 'block';
         });
     }
@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const mainNav = document.querySelector('.main-nav');
 
     if (hamburgerMenu && mainNav) {
-        hamburgerMenu.addEventListener('click', function() {
+        hamburgerMenu.addEventListener('click', function () {
             mainNav.classList.toggle('active');
         });
     }
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const content = item.querySelector('.accordion-content');
         const plusIcon = item.querySelector('.plus-icon');
 
-        header.addEventListener('click', function() {
+        header.addEventListener('click', function () {
             // Close all accordion items
             accordionItems.forEach(otherItem => {
                 if (otherItem !== item) {
@@ -52,11 +52,11 @@ document.addEventListener('DOMContentLoaded', function() {
     function animateCounter(element, target, duration) {
         let start = 0;
         const increment = target / (duration / 16);
-        
+
         const timer = setInterval(() => {
             start += increment;
             element.textContent = Math.floor(start) + '%';
-            
+
             if (start >= target) {
                 clearInterval(timer);
                 element.textContent = target + '%';
@@ -73,36 +73,36 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         // Search Functionality
         const searchIcon = document.getElementById('searchIcon');
         const searchBox = document.getElementById('searchBox');
-    
+
         if (searchIcon && searchBox) {
-            searchIcon.addEventListener('click', function() {
+            searchIcon.addEventListener('click', function () {
                 searchBox.style.display = searchBox.style.display === 'block' ? 'none' : 'block';
             });
         }
-    
+
         // Mobile Menu Toggle
         const hamburgerMenu = document.querySelector('.hamburger-menu');
         const mainNav = document.querySelector('.main-nav');
-    
+
         if (hamburgerMenu && mainNav) {
-            hamburgerMenu.addEventListener('click', function() {
+            hamburgerMenu.addEventListener('click', function () {
                 mainNav.classList.toggle('active');
             });
         }
-    
+
         // FAQ Accordion
         const accordionItems = document.querySelectorAll('.accordion-item');
-    
+
         accordionItems.forEach(item => {
             const header = item.querySelector('.accordion-header');
             const content = item.querySelector('.accordion-content');
             const plusIcon = item.querySelector('.plus-icon');
-    
-            header.addEventListener('click', function() {
+
+            header.addEventListener('click', function () {
                 // Close all accordion items
                 accordionItems.forEach(otherItem => {
                     if (otherItem !== item) {
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         otherItem.querySelector('.plus-icon').textContent = '+';
                     }
                 });
-    
+
                 // Toggle current item
                 if (content.style.display === 'block') {
                     content.style.display = 'none';
@@ -121,27 +121,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-    
+
         // Product Gallery Functionality
         const mainProductImage = document.getElementById('mainProductImage');
         const thumbnails = document.querySelectorAll('.thumbnail');
         const galleryDots = document.querySelectorAll('.gallery-dot');
         const prevButton = document.querySelector('.gallery-prev');
         const nextButton = document.querySelector('.gallery-next');
-        
+
         // Store all image paths for the slider
         const imagePaths = [];
         thumbnails.forEach(thumbnail => {
             imagePaths.push(thumbnail.getAttribute('data-image'));
         });
-        
+
         let currentIndex = 0;
-        
+
         // Update the displayed image and active states
         function updateGallery(index) {
             // Update main image
             mainProductImage.src = imagePaths[index];
-            
+
             // Update thumbnails active state
             thumbnails.forEach((thumbnail, i) => {
                 if (i === index) {
@@ -150,12 +150,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     thumbnail.classList.remove('active');
                 }
             });
-            
+
             // Update dots active state
             if (galleryDots.length > 0) {
                 // Calculate which dot should be active (if we have fewer dots than images)
                 const dotIndex = Math.min(Math.floor(index / (imagePaths.length / galleryDots.length)), galleryDots.length - 1);
-                
+
                 galleryDots.forEach((dot, i) => {
                     if (i === dotIndex) {
                         dot.classList.add('active');
@@ -165,19 +165,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             }
         }
-        
+
         // Set up thumbnail click events
         thumbnails.forEach((thumbnail, index) => {
-            thumbnail.addEventListener('click', function() {
+            thumbnail.addEventListener('click', function () {
                 currentIndex = index;
                 updateGallery(currentIndex);
             });
         });
-        
+
         // Set up navigation dots
         if (galleryDots.length > 0) {
             galleryDots.forEach((dot, index) => {
-                dot.addEventListener('click', function() {
+                dot.addEventListener('click', function () {
                     // Calculate which image to show based on the dot
                     const imagesPerDot = Math.ceil(imagePaths.length / galleryDots.length);
                     currentIndex = index * imagesPerDot;
@@ -188,29 +188,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         }
-        
+
         // Set up prev/next buttons
         if (prevButton && nextButton) {
-            prevButton.addEventListener('click', function() {
+            prevButton.addEventListener('click', function () {
                 currentIndex = (currentIndex - 1 + imagePaths.length) % imagePaths.length;
                 updateGallery(currentIndex);
             });
-            
-            nextButton.addEventListener('click', function() {
+
+            nextButton.addEventListener('click', function () {
                 currentIndex = (currentIndex + 1) % imagePaths.length;
                 updateGallery(currentIndex);
             });
         }
-        
+
         // Flavor selection affects product image
         const flavorRadios = document.querySelectorAll('input[name="flavor"]');
-        
+
         flavorRadios.forEach(radio => {
-            radio.addEventListener('change', function() {
+            radio.addEventListener('change', function () {
                 // This would update the main product image based on selected flavor
                 // For demo purposes, we'll just update to specific thumbnails for each flavor
                 const flavor = this.value;
-                
+
                 if (flavor === 'original') {
                     // Find the thumbnail with original product and click it
                     const originalThumb = document.querySelector('.thumbnail[data-image*="original"]');
@@ -226,16 +226,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-        
+
         // Purchase option selection affects add to cart button
         const purchaseOptions = document.querySelectorAll('input[name="purchase-type"]');
         const addToCartBtn = document.getElementById('addToCartBtn');
-        
+
         purchaseOptions.forEach(option => {
-            option.addEventListener('change', function() {
+            option.addEventListener('change', function () {
                 // Update add to cart button text based on selection
                 const purchaseType = this.value;
-                
+
                 if (purchaseType === 'subscription') {
                     addToCartBtn.textContent = 'Subscribe Now →';
                 } else if (purchaseType === 'double-kit') {
@@ -245,23 +245,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-    
+
         // Animated counter for statistics section
         function animateCounter(element, target, duration) {
             let start = 0;
             const increment = target / (duration / 16);
-            
+
             const timer = setInterval(() => {
                 start += increment;
                 element.textContent = Math.floor(start) + '%';
-                
+
                 if (start >= target) {
                     clearInterval(timer);
                     element.textContent = target + '%';
                 }
             }, 16);
         }
-    
+
         // Initialize counters when they come into view
         function initCounters() {
             const counters = document.querySelectorAll('.counter');
@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 animateCounter(counter, target, 2000); // 2 seconds duration
             });
         }
-        
+
         // Check if element is in viewport
         function isInViewport(element) {
             const rect = element.getBoundingClientRect();
@@ -281,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 rect.right <= (window.innerWidth || document.documentElement.clientWidth)
             );
         }
-        
+
         // Initialize counters when statistics section comes into view
         function checkCounters() {
             const statisticsSection = document.querySelector('.statistics-section');
@@ -290,9 +290,29 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.removeEventListener('scroll', checkCounters);
             }
         }
-        
+
         // Check on scroll and initial page load
         window.addEventListener('scroll', checkCounters);
         checkCounters(); // Check on page load
     });
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const productImage = document.getElementById("product-image");
+    const flavorButtons = document.querySelectorAll(".flavor-btn");
+
+    flavorButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const newImage = this.getAttribute("data-image");
+            productImage.src = newImage;
+
+            flavorButtons.forEach(btn => btn.style.border = "1px solid #ccc");
+            this.style.border = "2px solid #f0c040";
+        });
+    });
+});
+
+function changeImage(src) {
+    document.getElementById("main-image").src = src;
+}
